@@ -61,7 +61,7 @@ with open(_CSV_PATH, newline='') as csvfile:
       mfr_part = row[MFR_PART_COL]
       print(f'pushing component {lcsc_part_num}')
       LCSC_PART_LIST.append([lcsc_part_num, first_category, second_category, descr, mfr_part]) 
-
+      
     else:
       i+=1
 
@@ -69,7 +69,7 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
   tags = ', '.join([first_cat, second_cat])
   try:
     print(f'adding {lcsc_part_num}...')
-    footprint_filename = add_component(lcsc_part_num, args)
+    footprint_filename = add_component('C1549043', args)
 
     pprint(footprint_filename)
 
@@ -111,4 +111,4 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
 
   except Exception as e:
     print(f'error adding {lcsc_part_num}...')
-    raise
+    # raise
