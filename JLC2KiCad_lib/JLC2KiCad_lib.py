@@ -3,6 +3,7 @@ import json
 import os
 import logging
 import argparse
+import re
 
 from KicadModTree import *
 
@@ -12,7 +13,7 @@ from schematic.schematic import create_schematic
 
 # config
 output_dir='My_lib'
-model_path_relative=False
+model_path_relative=True
 footprint_creation=True
 schematic_creation=True
 schematic_lib='My_Schematic_lib'
@@ -39,6 +40,10 @@ def add_component(component_id, args):
 																output_dir = output_dir,
 																model_path_relative = model_path_relative,)
 
+			footprint_filename = footprint_name.split(':')[1]+'.kicad_mod'
+			return footprint_filename
+
+
 		else :
 			_, datasheet_link, _ = get_footprint_info(component_id)
 			footprint_name = ""
@@ -51,7 +56,7 @@ def add_component(component_id, args):
 							output_dir = output_dir)
 
 
-							
+
 if __name__ == '__main__': 
 
 	parser = argparse.ArgumentParser(description="take a JLCPCB part # and create the according component's kicad's library",

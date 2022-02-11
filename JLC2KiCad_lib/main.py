@@ -3,6 +3,7 @@ import json
 import os
 import logging
 import argparse
+import re
 
 from KicadModTree import *
 
@@ -59,13 +60,51 @@ with open(_CSV_PATH, newline='') as csvfile:
       print(f'pushing component {lcsc_part_num}')
       LCSC_PART_LIST.append([lcsc_part_num, first_category, second_category, descr, mfr_part]) 
 
-      break
     else:
       i+=1
 
 for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
+  tags = ', '.join([first_cat, second_cat])
   try:
     print(f'adding {lcsc_part_num}...')
-    add_component('C1002', args)
+    footprint_filename = add_component('C1002', args)
+
+    # C:\Users\logic\_workspace\kicad_lcsc_library\JLC2KiCad_lib\My_lib\footprint\GZ1608D601TF.kicad_mod
+    footprint_fullpath = 'C:\\Users\\logic\\_workspace\\kicad_lcsc_library\\JLC2KiCad_lib\\My_lib\\footprint\\'+footprint_filename
+    print(f'footprint created: {footprint_fullpath}')
+
+    # update pad name
+    with open(footprint_fullpath,'r+') as fi:
+      temp = fi.readlines()
+      temp_out = []
+      for line in temp:
+        temp_out.append( re.sub('\((\d+)\)', r'_\g<1>', line))
+
+      fi.seek(0)
+      fi.truncate()
+      fi.writelines(''.join(temp_out))
+
+    # update_descr
+    with open(footprint_fullpath,'r+') as fi:
+      temp = fi.readlines()
+      temp_out = []
+      for line in temp:
+        temp_out.append( re.sub('\(descr ".+"\)', r'(descr "'+mfr_part+', '+descr+'")', line))
+
+      fi.seek(0)
+      fi.truncate()
+      fi.writelines(''.join(temp_out))
+
+    # update tags
+    with open(footprint_fullpath,'r+') as fi:
+      temp = fi.readlines()
+      temp_out = []
+      for line in temp:
+        temp_out.append( re.sub('\(tags ".+"\)', r'(tags "'+descr+', '+tags+'")', line))
+      fi.seek(0)
+      fi.truncate()
+      fi.writelines(''.join(temp_out))
+
   except Exception as e:
     print(f'error adding {lcsc_part_num}...')
+    raise
