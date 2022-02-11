@@ -4,5 +4,5 @@ git fetch --all
 git pull
 
 pushd JLC2KiCad_lib
-  scripts	est.bat xah
+  scripts\test.bat xah
 popd
