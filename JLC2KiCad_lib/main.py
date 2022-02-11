@@ -69,7 +69,7 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
   tags = ', '.join([first_cat, second_cat])
   try:
     print(f'adding {lcsc_part_num}...')
-    footprint_filename = add_component('C1549043', args)
+    footprint_filename = add_component(lcsc_part_num, args)
 
     pprint(footprint_filename)
 
