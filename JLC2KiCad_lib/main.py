@@ -16,7 +16,7 @@ import csv
 from JLC2KiCad_lib import add_component
 
 # list file
-_CSV_PATH= r'C:\Users\logic\_workspace\kicad_lcsc_library\lcsc2kicad\scripts\xam'
+_CSV_PATH= r'C:\Users\logic\_workspace\kicad_lcsc_library\lcsc2kicad\scripts\'+sys.argv[1]
 
 # config
 LCSC_PART_COL=0
