@@ -1,6 +1,6 @@
 import requests 
 import json
-import os
+import os, sys
 import logging
 import argparse
 import re
@@ -16,7 +16,7 @@ import csv
 from JLC2KiCad_lib import add_component
 
 # list file
-_CSV_PATH= r'C:\Users\logic\_workspace\kicad_lcsc_library\lcsc2kicad\scripts\'+sys.argv[1]
+_CSV_PATH='C:\\Users\\logic\\_workspace\\kicad_lcsc_library\\lcsc2kicad\\scripts\\'+sys.argv[1]
 
 # config
 LCSC_PART_COL=0

@@ -2,4 +2,5 @@
 
 rmdir /S /Q C:\Users\logic\_workspace\kicad_lcsc_library\JLC2KiCad_lib\My_lib
 
-pipenv run python main.py
+pipenv sync
+pipenv run python main.py %1
