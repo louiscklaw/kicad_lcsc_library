@@ -1,0 +1,6 @@
+#
+$CMP {MFRPart_sanitized}
+D {Description} {SecondCategory}
+K 
+F {Datasheet}
+$ENDCMP
