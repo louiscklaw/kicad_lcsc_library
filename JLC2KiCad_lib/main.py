@@ -105,7 +105,7 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
         fi.writelines(''.join(temp_out))
 
       # update_descr
-      with open(footprint_file_created,'r+') as fi:
+      # with open(footprint_file_created,'r+') as fi:
         temp = fi.readlines()
         temp_out = []
         for line in temp:
@@ -116,7 +116,7 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
         fi.writelines(''.join(temp_out))
 
       # update tags
-      with open(footprint_file_created,'r+') as fi:
+      # with open(footprint_file_created,'r+') as fi:
         temp = fi.readlines()
         temp_out = []
         for line in temp:
