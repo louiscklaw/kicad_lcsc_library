@@ -1,12 +1,12 @@
 
 template = '''#!/usr/bin/env bash
 
+timeout {timeout}
+
 git fetch --all
 git pull
 
 pushd JLC2KiCad_lib
-  timeout {timeout}
-
   scripts\\test.bat xaa
 popd
 '''
@@ -56,4 +56,4 @@ i = 0
 for target_bat, csv_name in target_build_bats:
   i += 1
   with open('scripts\\'+target_bat, 'w') as f:
-    f.write(template.replace('xaa', csv_name).replace('{timeout}', str(30 * i)))
+    f.write(template.replace('xaa', csv_name).replace('{timeout}', str(5 * i)))

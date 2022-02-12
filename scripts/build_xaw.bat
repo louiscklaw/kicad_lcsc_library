@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
+timeout 115
+
 git fetch --all
 git pull
 
 pushd JLC2KiCad_lib
-  timeout 690
-
   scripts\test.bat xaw
 popd
