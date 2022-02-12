@@ -77,40 +77,49 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
     library_name = first_cat.replace(',','_').replace(' ','_')
 
     footprint_filename = add_component(lcsc_part_num, footprint_create_path, library_name)
-    footprint_file_created = '\\'.join([footprint_create_path, library_name, footprint_filename])
-    pprint(footprint_file_created)
 
-    # update pad name
-    with open(footprint_file_created,'r+') as fi:
-      temp = fi.readlines()
-      temp_out = []
-      for line in temp:
-        temp_out.append( re.sub('\((\d+)\)', r'_\g<1>', line))
+    if type(footprint_filename) == tuple:
+      # exit follow-up as tuple found
+      continue
+    else:
+      # continue, component created
+      try:
+        footprint_file_created = '\\'.join([footprint_create_path, library_name, footprint_filename])
+        pprint(footprint_file_created)
+      except Exception as e:
+        pprint([footprint_create_path, library_name, footprint_filename])
 
-      fi.seek(0)
-      fi.truncate()
-      fi.writelines(''.join(temp_out))
+      # update pad name
+      with open(footprint_file_created,'r+') as fi:
+        temp = fi.readlines()
+        temp_out = []
+        for line in temp:
+          temp_out.append( re.sub('\((\d+)\)', r'_\g<1>', line))
 
-    # update_descr
-    with open(footprint_file_created,'r+') as fi:
-      temp = fi.readlines()
-      temp_out = []
-      for line in temp:
-        temp_out.append( re.sub('\(descr ".+"\)', r'(descr "'+mfr_part+', '+descr+'")', line))
+        fi.seek(0)
+        fi.truncate()
+        fi.writelines(''.join(temp_out))
 
-      fi.seek(0)
-      fi.truncate()
-      fi.writelines(''.join(temp_out))
+      # update_descr
+      with open(footprint_file_created,'r+') as fi:
+        temp = fi.readlines()
+        temp_out = []
+        for line in temp:
+          temp_out.append( re.sub('\(descr ".+"\)', r'(descr "'+mfr_part+', '+descr+'")', line))
 
-    # update tags
-    with open(footprint_file_created,'r+') as fi:
-      temp = fi.readlines()
-      temp_out = []
-      for line in temp:
-        temp_out.append( re.sub('\(tags ".+"\)', r'(tags "'+descr+', '+tags+'")', line))
-      fi.seek(0)
-      fi.truncate()
-      fi.writelines(''.join(temp_out))
+        fi.seek(0)
+        fi.truncate()
+        fi.writelines(''.join(temp_out))
+
+      # update tags
+      with open(footprint_file_created,'r+') as fi:
+        temp = fi.readlines()
+        temp_out = []
+        for line in temp:
+          temp_out.append( re.sub('\(tags ".+"\)', r'(tags "'+descr+', '+tags+'")', line))
+        fi.seek(0)
+        fi.truncate()
+        fi.writelines(''.join(temp_out))
 
   except Exception as e:
     print(f'error adding {lcsc_part_num}...')
