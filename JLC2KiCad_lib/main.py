@@ -6,6 +6,7 @@ import os, sys
 import logging
 import argparse
 import re
+import shutil
 
 from KicadModTree import *
 
@@ -69,16 +70,17 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
   tags = ', '.join([first_cat, second_cat])
   try:
     print(f'adding {lcsc_part_num}...')
-    footprint_filename = add_component(lcsc_part_num, args)
-
-    pprint(footprint_filename)
-
     # C:\Users\logic\_workspace\kicad_lcsc_library\JLC2KiCad_lib\My_lib\footprint\GZ1608D601TF.kicad_mod
-    footprint_fullpath = 'C:\\Users\\logic\\_workspace\\kicad_lcsc_library\\JLC2KiCad_lib\\My_lib\\footprint\\'+footprint_filename
-    print(f'footprint created: {footprint_fullpath}')
+
+    footprint_create_path = 'C:\\Users\\logic\\_workspace\\kicad_lcsc_library\\JLC2KiCad_lib\\My_lib\\footprint'
+    library_name = first_cat.replace(',','_').replace(' ','_')
+
+    footprint_filename = add_component(lcsc_part_num, footprint_create_path, library_name)
+    footprint_file_created = '\\'.join([footprint_create_path, library_name, footprint_filename])
+    pprint(footprint_file_created)
 
     # update pad name
-    with open(footprint_fullpath,'r+') as fi:
+    with open(footprint_file_created,'r+') as fi:
       temp = fi.readlines()
       temp_out = []
       for line in temp:
@@ -89,7 +91,7 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
       fi.writelines(''.join(temp_out))
 
     # update_descr
-    with open(footprint_fullpath,'r+') as fi:
+    with open(footprint_file_created,'r+') as fi:
       temp = fi.readlines()
       temp_out = []
       for line in temp:
@@ -100,7 +102,7 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
       fi.writelines(''.join(temp_out))
 
     # update tags
-    with open(footprint_fullpath,'r+') as fi:
+    with open(footprint_file_created,'r+') as fi:
       temp = fi.readlines()
       temp_out = []
       for line in temp:
@@ -111,4 +113,4 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
 
   except Exception as e:
     print(f'error adding {lcsc_part_num}...')
-    # raise
+    raise

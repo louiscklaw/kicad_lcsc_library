@@ -21,7 +21,7 @@ footprint_lib='footprint'
 logging_level='INFO'
 log_file=True
 
-def add_component(component_id, args):
+def add_component(component_id, output_dir, footprint_lib):
 		logging.info(f'creating library for component {component_id}')
 		data = json.loads(requests.get(f"https://easyeda.com/api/products/{component_id}/svgs").content.decode())
 
