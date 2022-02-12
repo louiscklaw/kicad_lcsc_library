@@ -3,19 +3,20 @@ git fetch --all
 git pull
 
 
-start scripts\build_xaa.bat
-start scripts\build_xab.bat
-start scripts\build_xac.bat
-start scripts\build_xad.bat
-start scripts\build_xae.bat
-start scripts\build_xaf.bat
+@REM start scripts\build_xaa.bat
+@REM start scripts\build_xab.bat
+@REM start scripts\build_xac.bat
+@REM start scripts\build_xad.bat
+@REM start scripts\build_xae.bat
+@REM start scripts\build_xaf.bat
 
-@REM start scripts\build_xag.bat
-@REM start scripts\build_xah.bat
-@REM start scripts\build_xai.bat
-@REM start scripts\build_xaj.bat
-@REM start scripts\build_xak.bat
-@REM start scripts\build_xal.bat
+start scripts\build_xag.bat
+start scripts\build_xah.bat
+start scripts\build_xai.bat
+start scripts\build_xaj.bat
+start scripts\build_xak.bat
+start scripts\build_xal.bat
+
 @REM start scripts\build_xam.bat
 @REM start scripts\build_xan.bat
 @REM start scripts\build_xao.bat
