@@ -72,7 +72,8 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
     print(f'adding {lcsc_part_num}...')
     # C:\Users\logic\_workspace\kicad_lcsc_library\JLC2KiCad_lib\My_lib\footprint\GZ1608D601TF.kicad_mod
 
-    footprint_create_path = 'C:\\Users\\logic\\_workspace\\kicad_lcsc_library\\JLC2KiCad_lib\\My_lib\\footprint'
+    footprint_create_path = 'Z:\\footprint'
+    # footprint_create_path = 'C:\\Users\\logic\\_workspace\\kicad_lcsc_library\\JLC2KiCad_lib\\My_lib\\footprint'
     library_name = first_cat.replace(',','_').replace(' ','_')
 
     footprint_filename = add_component(lcsc_part_num, footprint_create_path, library_name)
