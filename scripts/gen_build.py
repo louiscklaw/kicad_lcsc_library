@@ -5,6 +5,8 @@ git fetch --all
 git pull
 
 pushd JLC2KiCad_lib
+  timeout {timeout}
+
   scripts\\test.bat xaa
 popd
 '''
@@ -49,7 +51,9 @@ target_csv = ['xaa',
 
 target_build_bats = map(lambda x: ['build_'+x+'.bat', x], target_csv)
 
-for target_bat, csv_name in target_build_bats:
+i = 0
 
+for target_bat, csv_name in target_build_bats:
+  i += 1
   with open('scripts\\'+target_bat, 'w') as f:
-    f.write(template.replace('xaa', csv_name))
+    f.write(template.replace('xaa', csv_name).replace('{timeout}', str(30 * i)))
