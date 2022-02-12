@@ -1,7 +1,7 @@
 @echo on
 
-git fetch --all
-git pull
+@REM git fetch --all
+@REM git pull
 
 pushd JLC2KiCad_lib
   scripts\test.bat xtest

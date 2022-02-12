@@ -76,7 +76,11 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
     # footprint_create_path = 'C:\\Users\\logic\\_workspace\\kicad_lcsc_library\\JLC2KiCad_lib\\My_lib\\footprint'
     library_name = first_cat.replace(',','_').replace(' ','_')
 
-    footprint_filename = add_component(lcsc_part_num, footprint_create_path, library_name)
+    try:
+      footprint_filename = add_component(lcsc_part_num, footprint_create_path, library_name)
+    except Exception as e:
+      print(f'error adding {lcsc_part_num}, skipping')
+      continue
 
     if type(footprint_filename) == tuple:
       # exit follow-up as tuple found
