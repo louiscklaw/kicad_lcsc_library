@@ -40,3 +40,4 @@ start scripts\build_xac.bat
 start scripts\build_xab.bat
 start scripts\build_xaa.bat
 
+start scripts\build_test.bat
