@@ -75,7 +75,7 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
 
     footprint_create_path = 'Z:\\footprint'
     # footprint_create_path = 'C:\\Users\\logic\\_workspace\\kicad_lcsc_library\\JLC2KiCad_lib\\My_lib\\footprint'
-    library_name = first_cat.replace(',','_').replace(' ','_')
+    library_name = first_cat.replace(',','_').replace(' ','_').replace('&','_').replace('__','_').replace('__','_').replace('__','_')
 
     try:
       footprint_filename = add_component(lcsc_part_num, footprint_create_path, library_name)
@@ -102,30 +102,22 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
           with open(footprint_file_created,'r+') as fi:
             temp = fi.readlines()
             temp_out = []
+
             for line in temp:
               temp_out.append( re.sub('\((\d+)\)', r'_\g<1>', line))
 
-            fi.seek(0)
-            fi.truncate()
-            fi.writelines(''.join(temp_out))
-
-          # with open(footprint_file_created,'r+') as fi:
-            # temp = fi.readlines()
-            temp = fi.readlines()
+            # update descr
+            temp = temp_out
             temp_out = []
             for line in temp:
               temp_out.append( re.sub('\(descr ".+"\)', r'(descr "'+mfr_part+', '+descr+'")', line))
 
-            fi.seek(0)
-            fi.truncate()
-            fi.writelines(''.join(temp_out))
-
-          # with open(footprint_file_created,'r+') as fi:
             # update tags
-            temp = fi.readlines()
+            temp = temp_out
             temp_out = []
             for line in temp:
               temp_out.append( re.sub('\(tags ".+"\)', r'(tags "'+descr+', '+tags+'")', line))
+
             fi.seek(0)
             fi.truncate()
             fi.writelines(''.join(temp_out))
