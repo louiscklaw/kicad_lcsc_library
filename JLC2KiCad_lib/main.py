@@ -76,6 +76,7 @@ for [lcsc_part_num, first_cat, second_cat, descr, mfr_part] in LCSC_PART_LIST:
     footprint_create_path = 'Z:\\footprint'
     # footprint_create_path = 'C:\\Users\\logic\\_workspace\\kicad_lcsc_library\\JLC2KiCad_lib\\My_lib\\footprint'
     library_name = first_cat.replace(',','_').replace(' ','_').replace('&','_').replace('__','_').replace('__','_').replace('__','_')
+    library_name = library_name.lower()
 
     try:
       footprint_filename = add_component(lcsc_part_num, footprint_create_path, library_name)
