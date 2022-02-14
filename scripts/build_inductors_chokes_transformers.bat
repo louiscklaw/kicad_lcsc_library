@@ -5,9 +5,9 @@ timeout 0
 git fetch --all
 git pull
 
-del Z:\footprint\lcsc_inductors_chokes_transformers\*.*
-del Z:\footprint\lcsc_inductors_chokes_transformers\.*
-rmdir Z:\footprint\lcsc_inductors_chokes_transformers\ 
+del /s /q /f Z:\footprint\lcsc_inductors_chokes_transformers\*.*
+del /s /q /f Z:\footprint\lcsc_inductors_chokes_transformers\.*
+rmdir /s /q Z:\footprint\lcsc_inductors_chokes_transformers\ 
 
 pushd JLC2KiCad_lib
   scripts\test.bat output\inductors_chokes_transformers.csv
