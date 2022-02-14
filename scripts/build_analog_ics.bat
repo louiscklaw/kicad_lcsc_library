@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+timeout 10
+
+git fetch --all
+git pull
+
+pushd JLC2KiCad_lib
+  scripts\test.bat output\analog_ics.csv
+popd
