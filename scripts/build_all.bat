@@ -2,20 +2,20 @@
 git fetch --all
 git pull
 
-scripts\build_amplifiers.bat
-scripts\build_analog_ics.bat
-scripts\build_audio_products_micromotors.bat
-scripts\build_battery_products.bat
-@REM scripts\build_buzzers_speakers_microphones.bat
-@REM scripts\build_capacitors.bat
-@REM scripts\build_circuit_protection.bat
-@REM scripts\build_clock_and_timing.bat
-@REM scripts\build_connectors.bat
-@REM scripts\build_crystals.bat
-@REM scripts\build_crystals_oscillators_resonators.bat
-@REM scripts\build_data_converters.bat
-@REM scripts\build_development_boards_tools.bat
-@REM scripts\build_diodes.bat
+start scripts\build_amplifiers.bat
+start scripts\build_analog_ics.bat
+start scripts\build_audio_products_micromotors.bat
+start scripts\build_battery_products.bat
+start scripts\build_buzzers_speakers_microphones.bat
+start scripts\build_capacitors.bat
+start scripts\build_circuit_protection.bat
+start scripts\build_clock_and_timing.bat
+start scripts\build_connectors.bat
+start scripts\build_crystals.bat
+start scripts\build_crystals_oscillators_resonators.bat
+start scripts\build_data_converters.bat
+start scripts\build_development_boards_tools.bat
+start scripts\build_diodes.bat
 @REM scripts\build_display_modules_led_drivers_display_drivers.bat
 @REM scripts\build_driver_ics.bat
 @REM scripts\build_electromechanical_devices_components.bat
