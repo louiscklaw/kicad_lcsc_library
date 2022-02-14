@@ -8,9 +8,9 @@ timeout {timeout}
 git fetch --all
 git pull
 
-del Z:\\footprint\\xaa\\*.*
-del Z:\\footprint\\xaa\\.*
-rmdir Z:\\footprint\\xaa\\ 
+del Z:\\footprint\\lcsc_xaa\\*.*
+del Z:\\footprint\\lcsc_xaa\\.*
+rmdir Z:\\footprint\\lcsc_xaa\\ 
 
 pushd JLC2KiCad_lib
   scripts\\test.bat output\\xaa.csv
